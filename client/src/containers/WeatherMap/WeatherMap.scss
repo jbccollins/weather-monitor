@@ -1,0 +1,14 @@
+.WeatherMap {
+    height: 100vh;
+    width: 100vw;
+    .leaflet-container {
+        height: 100%;
+        width: 100%;
+        background: #141414;
+    }
+    .RadarTileLayer {
+        img {
+            opacity: 0.2 !important;
+        }
+    }
+}

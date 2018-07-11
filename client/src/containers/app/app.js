@@ -1,11 +1,11 @@
-import React from "react";
-import DemoComponent from "components/DemoComponent";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { setDisplayMode } from "actions/controls";
-import { DARK, LIGHT } from "common/constants/theme";
+import React from 'react';
+import WeatherMap from 'containers/WeatherMap';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { setDisplayMode } from 'actions/controls';
+import { DARK, LIGHT } from 'common/constants/theme';
 
-import "./app.scss";
+import './app.scss';
 
 class App extends React.Component {
   handleDisplayModeChange = () => {
@@ -18,10 +18,7 @@ class App extends React.Component {
     return (
       <div className={displayMode}>
         <main>
-          <DemoComponent
-            onClick={this.handleDisplayModeChange}
-            theme={displayMode}
-          />
+          <WeatherMap />
         </main>
       </div>
     );

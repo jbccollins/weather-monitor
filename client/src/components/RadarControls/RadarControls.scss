@@ -1,0 +1,109 @@
+.RadarControls {
+    position: absolute;
+    bottom: 20px;
+    height: 30px;
+    width: 90vw;
+    left: 5vw;
+    line-height: 30px;
+    text-align: center;
+    z-index: 1000;
+    color: blue;
+
+    .ProgressBar, .VolumeSlider {
+        position: relative;
+        background: #eee;
+        border-radius: 4px;
+
+        &-elapsed,
+        &-value {
+            background: #2b2b2b;
+            border-radius: 4px;
+        }
+
+        &-seek {
+            position: absolute;
+            cursor: pointer;
+        }
+
+        &-handle {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #00ff00;
+            border-radius: 100%;
+            transform: scale(0);
+            transition: transform 0.2s;
+        }
+
+        &.isSeekable,
+        &.isEnabled {
+            &:hover {
+            .ProgressBar-handle,
+            .VolumeSlider-handle {
+                transform: scale(1);
+            }
+
+            .ProgressBar-intent,
+            .VolumeSlider-intent {
+                position: absolute;
+                background: rgba(0,0,0,0.1);
+            }
+            }
+
+            .ProgressBar-elapsed,
+            .VolumeSlider-value {
+            background: #00ff00;
+            }
+        }
+        }
+
+        .ProgressBar {
+        height: 8px;
+        margin: 10px 0;
+
+        &-elapsed {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        &-buffered {
+            height: 100%;
+            border-radius: 4px;
+            background: #2b2b2b;
+        }
+
+        &-seek {
+            top: -6px;
+            right: 0;
+            bottom: -6px;
+            left: 0;
+        }
+
+        &-handle {
+            top: 0;
+            margin: -4px 0 0 -8px;
+        }
+
+        &.isSeekable {
+            &:hover {
+            .ProgressBar-handle {
+                transform: scale(1);
+            }
+
+            .ProgressBar-intent {
+                top: 0;
+                left: 0;
+                height: 100%;
+            }
+            }
+        }
+
+        &.isLoading {
+            opacity: 0.5;
+            background: #ccc;
+            animation: barLoading 2s infinite;
+        }
+    }
+}
