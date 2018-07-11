@@ -6,20 +6,20 @@ import { ProgressBar } from 'react-player-controls';
 class RadarControls extends React.Component {
   incrementSeek = () => {
     const { ticks, currentTick } = this.props;
-    this.props.onChange(currentTick === ticks.length ? 0 : currentTick + 1);
+    this.props.onChange(currentTick === ticks.length - 1 ? 0 : currentTick + 1);
   };
 
   componentDidMount() {
-    setInterval(this.incrementSeek, 100000);
+    setInterval(this.incrementSeek, 1000);
   }
 
   render() {
     const { ticks, currentTick } = this.props;
 
     return (
-      <div className="RadarControls">
+      <div className={`RadarControls${currentTick === 0 ? ' first' : ''}`}>
         <ProgressBar
-          totalTime={ticks.length}
+          totalTime={ticks.length - 1}
           currentTime={currentTick}
           isSeekable={false}
         />

@@ -11,7 +11,6 @@ L.Icon.Default.mergeOptions({
 //  Workaround for 1px lines appearing in Chrome due to fractional transforms
 //  and resulting anti-aliasing.
 //  https://github.com/Leaflet/Leaflet/issues/3575
-/*
 if (window.navigator.userAgent.indexOf('Chrome') > -1) {
   var originalInitTile = L.GridLayer.prototype._initTile;
   L.GridLayer.include({
@@ -23,5 +22,5 @@ if (window.navigator.userAgent.indexOf('Chrome') > -1) {
     }
   });
 }
-*/
+
 export default L;

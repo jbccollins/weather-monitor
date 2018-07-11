@@ -1,23 +1,30 @@
 .RadarControls {
     position: absolute;
-    bottom: 20px;
-    height: 30px;
-    width: 90vw;
-    left: 5vw;
-    line-height: 30px;
+    bottom: 0px;
+    width: 100vw;
+    left: 0vw;
     text-align: center;
     z-index: 1000;
     color: blue;
 
+    .ProgressBar-elapsed {
+        transition: width 0.2s linear;
+    }
+
+    &.first {
+        .ProgressBar-elapsed {
+            transition: none;
+        }
+    }
+
     .ProgressBar, .VolumeSlider {
         position: relative;
         background: #eee;
-        border-radius: 4px;
+        opacity: 0.2;
 
         &-elapsed,
         &-value {
             background: #2b2b2b;
-            border-radius: 4px;
         }
 
         &-seek {
@@ -59,7 +66,7 @@
 
         .ProgressBar {
         height: 8px;
-        margin: 10px 0;
+        //margin: 10px 0;
 
         &-elapsed {
             height: 100%;

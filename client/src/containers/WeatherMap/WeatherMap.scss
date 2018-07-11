@@ -7,8 +7,6 @@
         background: #141414;
     }
     .RadarTileLayer {
-        img {
-            opacity: 0.2 !important;
-        }
+        transition: opacity 0.5s;
     }
 }

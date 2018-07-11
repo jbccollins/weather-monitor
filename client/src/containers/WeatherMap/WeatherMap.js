@@ -4,11 +4,17 @@ import { connect } from 'react-redux';
 import { setDisplayMode } from 'actions/controls';
 import { fetchRadarTimestamps, setRadarTimestamp } from 'actions/radar';
 import 'utilities/leaflet-shims';
-import { generateRadarTileURL } from 'utilities/helpers';
+import {
+  generateRadarTileURL,
+  generateIowaRadarTileLayer
+} from 'utilities/helpers';
+import { IOWA_RADAR_TILES } from 'common/constants/urls';
 import './WeatherMap.scss';
 import 'leaflet/dist/leaflet.css';
-import { Map, TileLayer } from 'react-leaflet';
+import { Map, TileLayer, WMSTileLayer } from 'react-leaflet';
 import RadarControls from 'components/RadarControls';
+
+const IOWA_RADAR_TICKS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 class WeatherMap extends React.Component {
   componentDidMount() {
@@ -20,12 +26,9 @@ class WeatherMap extends React.Component {
     this.props.setRadarTimestamp(timestamp);
   };
 
-  // 9962461c93445dbaf2529f24d498bab5
-
   render() {
     const { fetching, error, radarTimestamps } = this.props.radarTimestamps;
     const { radarTimestamp } = this.props;
-    console.log(radarTimestamp);
     return (
       <div className="WeatherMap">
         <div className="radar-controls-container">
@@ -43,7 +46,8 @@ class WeatherMap extends React.Component {
               <RadarControls
                 onChange={this.handleRadarTimestampChange}
                 currentTick={radarTimestamp}
-                ticks={radarTimestamps}
+                //ticks={radarTimestamps}
+                ticks={IOWA_RADAR_TICKS}
               />
             )}
         </div>
@@ -54,7 +58,8 @@ class WeatherMap extends React.Component {
           />
           {/*<TileLayer crossOrigin url="https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=9962461c93445dbaf2529f24d498bab5"/>*/}
           {radarTimestamps !== null &&
-            radarTimestamp !== null && (
+            radarTimestamp !== null &&
+            false && (
               <TileLayer
                 className="RadarTileLayer"
                 key={radarTimestamp}
@@ -62,6 +67,17 @@ class WeatherMap extends React.Component {
                 url={generateRadarTileURL(radarTimestamps[radarTimestamp])}
               />
             )}
+          {IOWA_RADAR_TICKS.map(t => (
+            <WMSTileLayer
+              className="RadarTileLayer"
+              key={`${t}-iowa`}
+              opacity={radarTimestamp === t ? 0.5 : 0}
+              layers={generateIowaRadarTileLayer(t)}
+              transparent
+              url={IOWA_RADAR_TILES}
+              format="image/png"
+            />
+          ))}
           <TileLayer
             crossOrigin
             url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png"
