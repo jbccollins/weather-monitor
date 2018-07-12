@@ -2,7 +2,7 @@
 
 A no frills weather forecast website. Features a live looping precipitation radar and local forcasting.
 
-![alt text](https://imgur.com/GyIX8fE)
+![alt text](https://imgur.com/GyIX8fE.png)
 
 ## Installation
 
