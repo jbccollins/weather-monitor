@@ -51,7 +51,7 @@ class WeatherMap extends React.Component {
               />
             )}
         </div>
-        <Map center={[38.9072, -77.0369]} zoom={10}>
+        <Map center={[38.9072, -77.0369]} zoom={8}>
           <TileLayer
             crossOrigin
             url="https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png"
@@ -71,7 +71,7 @@ class WeatherMap extends React.Component {
             <WMSTileLayer
               className="RadarTileLayer"
               key={`${t}-iowa`}
-              opacity={radarTimestamp === t ? 0.5 : 0}
+              opacity={radarTimestamp === t ? 0.7 : 0}
               layers={generateIowaRadarTileLayer(t)}
               transparent
               url={IOWA_RADAR_TILES}
