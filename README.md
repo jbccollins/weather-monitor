@@ -1,15 +1,8 @@
 ## About
 
-I use the same basic set of stuff in almost all my React projects. So here's my bootstrapped thing for them.
+A no frills weather forecast website. Features a live looping precipitation radar and local forcasting.
 
-### Notable Dependencies/Features
-* Redux (Application state management)
-* react-router (I don't usually use this but it's useful sometimes)
-* DirectoryNamedWebpackPlugin (A personal pet peeve of mine is using index.js for every component)
-* babel-preset-react-app (Enable all those juicy ES6 features)
-* Concurrent Server and Client in the same project with no configuration bullshit
-* Hot reloading
-* Configured to work by default with the free tier of heroku
+![alt text](https://imgur.com/GyIX8fE)
 
 ## Installation
 
