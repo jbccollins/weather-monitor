@@ -9,4 +9,7 @@
     .RadarTileLayer {
         //transition: opacity 0.3s;
     }
+    .leaflet-control-attribution {
+        display: none;
+    }
 }
