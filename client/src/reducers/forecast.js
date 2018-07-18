@@ -3,6 +3,7 @@ import {
   WEATHER_FORECAST_RECEIVED,
   WEATHER_FORECAST_ERRORED
 } from '../actions/forecast';
+import { groupForecastByDay } from 'utilities/helpers';
 
 const initialWeatherForecast = {
   weatherForecast: null,
@@ -20,7 +21,10 @@ const weatherForecast = (state = initialWeatherForecast, action) => {
     case WEATHER_FORECAST_RECEIVED:
       return {
         ...state,
-        weatherForecast: action.payload.weatherForecast,
+        weatherForecast: {
+          list: groupForecastByDay(action.payload.weatherForecast['list']),
+          name: action.payload.weatherForecast['city']['name']
+        },
         fetching: false,
         error: false
       };

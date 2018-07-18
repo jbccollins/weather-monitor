@@ -9,24 +9,30 @@ import { generateIowaRadarTileLayer } from 'utilities/helpers';
 import { IOWA_RADAR_TILES } from 'common/constants/urls';
 import './WeatherMap.scss';
 import 'leaflet/dist/leaflet.css';
-import { Map, TileLayer, WMSTileLayer } from 'react-leaflet';
+import { Map, TileLayer, WMSTileLayer, Marker } from 'react-leaflet';
 import RadarControls from 'components/RadarControls';
 import ForecastOverlay from 'components/ForecastOverlay';
+import L from 'leaflet';
 
 const IOWA_RADAR_TICKS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 class WeatherMap extends React.Component {
+  state = {
+    clickedLatLng: null
+  };
+
   handleRadarTimestampChange = timestamp => {
     this.props.setRadarTimestamp(timestamp);
   };
 
   handleMapClick = ({ latlng }) => {
-    console.log(latlng);
     this.props.fetchWeatherForecast();
+    this.setState({ clickedLatLng: latlng });
   };
 
   render() {
     const { radarTimestamp, weatherForecast } = this.props;
+    const { clickedLatLng } = this.state;
     return (
       <div className="WeatherMap">
         <div className="radar-controls-container">
@@ -62,6 +68,16 @@ class WeatherMap extends React.Component {
             crossOrigin
             url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png"
           />
+          {clickedLatLng && (
+            <Marker
+              zIndexOffset={1000}
+              position={[clickedLatLng.lat, clickedLatLng.lng]}
+              icon={L.divIcon({
+                className: `radar-icon`,
+                iconSize: [1, 1]
+              })}
+            />
+          )}
         </Map>
       </div>
     );

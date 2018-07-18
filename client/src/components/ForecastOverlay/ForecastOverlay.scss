@@ -3,8 +3,6 @@
     left: 12px;
     background: #2b2b2b;
     border: 1px solid grey;
-    width: 600px;
-    height: 200px;
     position: fixed;
     z-index: 1000;
     color: white;
@@ -13,20 +11,37 @@
     .forecast-container {
         height: 100%;
         position: relative;
+        overflow-y: auto;
+        display: flex;
+        text-align: center;
     }
 
     .city-name {
         font-size: 18px;
-        width: 100%;
         padding: 5px;
         font-weight: bold;
         height: 30px;
         border-bottom: 1px solid grey;
+        position: fixed;
+        top: 12px;
+        right: 12px;
     }
 
-    .time-bin-container {
-        height: calc(100% - 40px);
-        overflow-y: auto;
+
+    .day-block {
+        border-left: 1px solid grey;
+        border-right: 1px solid grey;
+        &:first-of-type {
+            border-left: none;
+        }
+        &:last-of-type {
+            border-right: none;
+        }
+    }
+    .forecast-slot {
+        min-width: 80px;
+        display: flex;
+        flex-flow: column;
     }
 
     .timestamp {
@@ -40,7 +55,9 @@
         background-repeat: no-repeat;
         background-size: 35px 35px;
         background-color: #1a8cff;
-        display: inline-block
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     // .storm-showers {mask-image: url('../../assets/weather-icons/wi-storm-showers.svg');}
