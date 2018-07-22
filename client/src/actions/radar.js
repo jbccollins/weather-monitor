@@ -1,10 +1,21 @@
 import fetch from 'isomorphic-fetch';
+import moment from 'moment';
 import { RADAR_TIMESTAMPS } from 'common/constants/urls';
 
 const RADAR_TIMESTAMPS_REQUESTED = 'radar/RADAR_TIMESTAMPS_REQUESTED';
 const RADAR_TIMESTAMPS_RECEIVED = 'radar/RAIL_PREDICTIONS_RECEIVED';
 const RADAR_TIMESTAMPS_ERRORED = 'radar/RAIL_PREDICTIONS_ERRORED';
 const SET_RADAR_TIMESTAMP = 'radar/SET_RADAR_TIMESTAMP';
+const SET_RADAR_CACHEBUST = 'radar/SET_RADAR_CACHEBUST';
+
+const setRadarCachebust = () => {
+  return dispatch => {
+    dispatch({
+      type: SET_RADAR_CACHEBUST,
+      payload: { radarCachebust: moment().format('X') }
+    });
+  };
+};
 
 const setRadarTimestamp = radarTimestamp => {
   return dispatch => {
@@ -58,5 +69,7 @@ export {
   handleRadarTimestampsError,
   fetchRadarTimestamps,
   setRadarTimestamp,
-  SET_RADAR_TIMESTAMP
+  SET_RADAR_TIMESTAMP,
+  setRadarCachebust,
+  SET_RADAR_CACHEBUST
 };

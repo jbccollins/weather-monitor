@@ -38,7 +38,7 @@ class ForecastOverlay extends React.Component {
               const items = list[k];
               return (
                 <div className="day-block" key={k}>
-                  <div>{moment(k).calendar()}</div>
+                  <div className="day-title">{moment(k).calendar()}</div>
                   {items.map(({ dt, weather }) => (
                     <div className="forecast-slot" key={dt}>
                       <div className="timestamp">

@@ -13,6 +13,14 @@ const generateIowaRadarTileLayer = timestamp => {
     : `nexrad-n0r-900913-m${String(time).padStart(2, '0')}m`;
 };
 
+const generateWeatherForecastURL = latlng => {
+  return `https://api.openweathermap.org/data/2.5/forecast?lat=${
+    latlng.lat
+  }&lon=${
+    latlng.lng
+  }&units=imperial&appid=9962461c93445dbaf2529f24d498bab5&cnt=16`;
+};
+
 const groupForecastByDay = weatherForcast => {
   return groupBy(weatherForcast, ({ dt }) => {
     console.log(
@@ -29,4 +37,9 @@ const groupForecastByDay = weatherForcast => {
   });
 };
 
-export { generateRadarTileURL, generateIowaRadarTileLayer, groupForecastByDay };
+export {
+  generateRadarTileURL,
+  generateIowaRadarTileLayer,
+  groupForecastByDay,
+  generateWeatherForecastURL
+};

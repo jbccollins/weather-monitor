@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import { WEATHER_FORECAST } from 'common/constants/urls';
+import { generateWeatherForecastURL } from 'utilities/helpers';
 
 const WEATHER_FORECAST_REQUESTED = 'forecast/WEATHER_FORECAST_REQUESTED';
 const WEATHER_FORECAST_RECEIVED = 'forecast/WEATHER_FORECAST_RECEIVED';
@@ -19,10 +20,10 @@ const handleWeatherForecastError = error => ({
   payload: { error }
 });
 
-const fetchWeatherForecast = () => {
+const fetchWeatherForecast = latlng => {
   return dispatch => {
     dispatch(requestWeatherForecast());
-    return fetch(WEATHER_FORECAST, {
+    return fetch(generateWeatherForecastURL(latlng), {
       method: 'GET',
       headers: {
         Accept: 'application/json'

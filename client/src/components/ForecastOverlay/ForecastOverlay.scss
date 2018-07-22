@@ -1,6 +1,6 @@
 .ForecastOverlay {
     bottom: 12px;
-    left: 12px;
+    left: bottom;
     background: #2b2b2b;
     border: 1px solid grey;
     position: fixed;
@@ -8,6 +8,11 @@
     color: white;
     position: absolute;
 
+    .day-title {
+        border-bottom: 1px solid grey;
+        height: 30px;
+        line-height: 30px;
+    }
     .forecast-container {
         height: 100%;
         position: relative;
@@ -17,14 +22,13 @@
     }
 
     .city-name {
-        font-size: 18px;
+        font-size: 24px;
         padding: 5px;
         font-weight: bold;
-        height: 30px;
-        border-bottom: 1px solid grey;
+        height: 45px;
         position: fixed;
-        top: 12px;
-        right: 12px;
+        bottom: 106px;
+        left: 12px;
     }
 
 
@@ -42,6 +46,8 @@
         min-width: 80px;
         display: flex;
         flex-flow: column;
+        float: left;
+        padding-top: 5px;
     }
 
     .timestamp {

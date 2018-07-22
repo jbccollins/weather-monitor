@@ -18,20 +18,32 @@ const IOWA_RADAR_TICKS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 class WeatherMap extends React.Component {
   state = {
-    clickedLatLng: null
+    clickedLatLng: null,
+    forecastInterval: null
   };
+
+  componentDidMount() {
+    this.handleMapClick({ latlng: new L.LatLng(38.9072, -77.0369) });
+  }
 
   handleRadarTimestampChange = timestamp => {
     this.props.setRadarTimestamp(timestamp);
   };
 
   handleMapClick = ({ latlng }) => {
-    this.props.fetchWeatherForecast();
+    clearInterval(this.state.forecastInterval);
+    this.props.fetchWeatherForecast(latlng);
     this.setState({ clickedLatLng: latlng });
+    this.setState({
+      forecastInterval: setInterval(
+        () => this.props.fetchWeatherForecast(latlng),
+        300000
+      )
+    });
   };
 
   render() {
-    const { radarTimestamp, weatherForecast } = this.props;
+    const { radarTimestamp, weatherForecast, radarCachebust } = this.props;
     const { clickedLatLng } = this.state;
     return (
       <div className="WeatherMap">
@@ -55,10 +67,11 @@ class WeatherMap extends React.Component {
           {IOWA_RADAR_TICKS.map(t => (
             <WMSTileLayer
               className="RadarTileLayer"
-              key={`${t}-iowa`}
+              key={`${t}-${radarCachebust}-iowa`}
               opacity={radarTimestamp === t ? 0.7 : 0}
               layers={generateIowaRadarTileLayer(t)}
               transparent
+              styles=""
               url={IOWA_RADAR_TILES}
               //onTileLoadStart={() => {console.log('tls')}}
               format="image/png"
@@ -87,7 +100,8 @@ class WeatherMap extends React.Component {
 const mapStateToProps = state => ({
   displayMode: state.displayMode,
   radarTimestamp: state.radarTimestamp,
-  weatherForecast: state.weatherForecast
+  weatherForecast: state.weatherForecast,
+  radarCachebust: state.radarCachebust
 });
 
 const mapDispatchToProps = dispatch =>

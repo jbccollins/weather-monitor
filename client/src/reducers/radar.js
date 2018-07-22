@@ -1,8 +1,10 @@
+import moment from 'moment';
 import {
   RADAR_TIMESTAMPS_REQUESTED,
   RADAR_TIMESTAMPS_RECEIVED,
   RADAR_TIMESTAMPS_ERRORED,
-  SET_RADAR_TIMESTAMP
+  SET_RADAR_TIMESTAMP,
+  SET_RADAR_CACHEBUST
 } from '../actions/radar';
 
 const initialRadarTimestamps = {
@@ -46,4 +48,13 @@ const radarTimestamp = (state = 0, action) => {
   }
 };
 
-export { radarTimestamps, radarTimestamp };
+const radarCachebust = (state = moment().format('X'), action) => {
+  switch (action.type) {
+    case SET_RADAR_CACHEBUST:
+      return action.payload.radarCachebust;
+    default:
+      return state;
+  }
+};
+
+export { radarTimestamps, radarTimestamp, radarCachebust };

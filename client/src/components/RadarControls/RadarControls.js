@@ -10,7 +10,7 @@ class RadarControls extends React.Component {
   };
 
   componentDidMount() {
-    setInterval(this.incrementSeek, 300);
+    setInterval(this.incrementSeek, 600);
   }
 
   render() {
