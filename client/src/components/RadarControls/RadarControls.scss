@@ -1,15 +1,11 @@
 .RadarControls {
     position: absolute;
-    bottom: 0px;
+    top: 0px;
     width: 100vw;
     left: 0vw;
     text-align: center;
     z-index: 1000;
     color: blue;
-
-    .ProgressBar-elapsed {
-        transition: width 0.2s linear;
-    }
 
     &.first {
         .ProgressBar-elapsed {
@@ -20,7 +16,7 @@
     .ProgressBar, .VolumeSlider {
         position: relative;
         background: #eee;
-        opacity: 0.2;
+        opacity: 0.5;
 
         &-elapsed,
         &-value {

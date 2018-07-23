@@ -1,8 +1,8 @@
 {
-  "name": "my-personal-starter-react-setup",
+  "name": "us-weather-monitor",
   "version": "1.0.0",
   "engines": {
-    "node": "10.0.0"
+    "node": "^10.0.0"
   },
   "scripts": {
     "client": "cd client && yarn start",

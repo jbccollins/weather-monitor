@@ -31,15 +31,7 @@ class WeatherMap extends React.Component {
   };
 
   handleMapClick = ({ latlng }) => {
-    clearInterval(this.state.forecastInterval);
-    this.props.fetchWeatherForecast(latlng);
-    this.setState({ clickedLatLng: latlng });
-    this.setState({
-      forecastInterval: setInterval(
-        () => this.props.fetchWeatherForecast(latlng),
-        300000
-      )
-    });
+    //this.setState({ clickedLatLng: latlng });
   };
 
   render() {

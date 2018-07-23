@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-fetch';
-import { WEATHER_FORECAST } from 'common/constants/urls';
 import { generateWeatherForecastURL } from 'utilities/helpers';
 
 const WEATHER_FORECAST_REQUESTED = 'forecast/WEATHER_FORECAST_REQUESTED';
