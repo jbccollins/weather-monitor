@@ -67,12 +67,13 @@ class WeatherMap extends React.Component {
           {IOWA_RADAR_TICKS.map(t => (
             <WMSTileLayer
               className="RadarTileLayer"
-              key={`${t}-${radarCachebust}-iowa`}
+              key={`${t}-iowa`}
               opacity={radarTimestamp === t ? 0.7 : 0}
               layers={generateIowaRadarTileLayer(t)}
               transparent
               styles=""
-              url={IOWA_RADAR_TILES}
+              radarCachebust={radarCachebust}
+              url={`${IOWA_RADAR_TILES}?cachebust={radarCachebust}`}
               //onTileLoadStart={() => {console.log('tls')}}
               format="image/png"
             />
