@@ -46,7 +46,10 @@ class WeatherMap extends React.Component {
             ticks={IOWA_RADAR_TICKS}
           />
         </div>
-        <ForecastOverlay forecast={weatherForecast} />
+        <ForecastOverlay
+          forecast={weatherForecast}
+          radarCachebust={radarCachebust}
+        />
         <Map
           center={[39.5, -98.35]}
           zoom={5}

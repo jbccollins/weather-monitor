@@ -1,11 +1,14 @@
 import React from 'react';
 import './ForecastOverlay.scss';
+import PropTypes from 'prop-types';
 
 class ForecastOverlay extends React.Component {
   render() {
+    const { radarCachebust } = this.props;
     return (
       <div className="ForecastOverlay">
         <a
+          key={radarCachebust}
           className="weatherwidget-io"
           href="https://forecast7.com/en/38d91n77d04/washington/?unit=us"
           data-label_1="Washington DC"
@@ -20,5 +23,9 @@ class ForecastOverlay extends React.Component {
     );
   }
 }
+
+ForecastOverlay.propTypes = {
+  radarCachebust: PropTypes.number.isRequired
+};
 
 export default ForecastOverlay;
