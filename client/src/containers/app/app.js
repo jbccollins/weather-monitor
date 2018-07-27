@@ -17,7 +17,7 @@ class App extends React.Component {
   componentDidMount() {
     // Every 5 minutes
     setInterval(this.props.setRadarCachebust, 300000);
-    !(function(d, s, id) {
+    (function(d, s, id) {
       var js,
         fjs = d.getElementsByTagName(s)[0];
       if (!d.getElementById(id)) {
