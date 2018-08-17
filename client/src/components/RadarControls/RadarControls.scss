@@ -1,6 +1,5 @@
 .RadarControls {
     position: absolute;
-    top: 0px;
     width: 100vw;
     left: 0vw;
     text-align: center;
@@ -20,7 +19,7 @@
 
         &-elapsed,
         &-value {
-            background: #2b2b2b;
+            background: #212121;
         }
 
         &-seek {

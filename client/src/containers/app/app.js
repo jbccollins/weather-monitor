@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { setDisplayMode } from 'actions/controls';
 import { setRadarCachebust } from 'actions/radar';
 import { DARK, LIGHT } from 'common/constants/theme';
-
 import './app.scss';
 
 class App extends React.Component {
@@ -14,7 +13,7 @@ class App extends React.Component {
     this.props.setDisplayMode(displayMode === LIGHT ? DARK : LIGHT);
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     // Every 5 minutes
     setInterval(this.props.setRadarCachebust, 300000);
     (function(d, s, id) {
