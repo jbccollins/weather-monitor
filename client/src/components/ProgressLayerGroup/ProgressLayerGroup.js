@@ -1,16 +1,27 @@
 import { LayerGroup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet-tile-loading-progress-control';
+import 'leaflet-google-places-autocomplete';
+import 'leaflet-tile-loading-progress-control/dist/Control.TileLoadingProgress.css';
 import './ProgressLayerGroup.scss';
-console.log(L.Control.TileLoadingProgress);
 class ProgressLayerGroup extends LayerGroup {
   componentDidMount() {
     super.componentDidMount();
-    console.log(this.leafletElement);
+    const map = this.leafletElement._map;
     const tileLoadingProgress = new L.Control.TileLoadingProgress({
-      leafletElt: this.leafletElement
+      leafletElt: this.leafletElement,
+      position: 'bottomleft'
     });
-    tileLoadingProgress.addTo(this.leafletElement._map);
+    tileLoadingProgress.addTo(map);
+
+    new L.Control.GPlaceAutocomplete({
+      callback: function(place) {
+        const loc = place.geometry.location;
+        console.log(place);
+
+        map.setView([loc.lat(), loc.lng()], 8);
+      }
+    }).addTo(map);
   }
 }
 

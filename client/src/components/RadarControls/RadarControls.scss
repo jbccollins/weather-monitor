@@ -14,12 +14,12 @@
 
     .ProgressBar, .VolumeSlider {
         position: relative;
-        background: #eee;
-        opacity: 0.5;
+        background: transparent;
+        opacity: 0.1;
 
         &-elapsed,
         &-value {
-            background: #212121;
+            background: #eee;
         }
 
         &-seek {
@@ -60,7 +60,7 @@
         }
 
         .ProgressBar {
-        height: 8px;
+        height: 4px;
         //margin: 10px 0;
 
         &-elapsed {
