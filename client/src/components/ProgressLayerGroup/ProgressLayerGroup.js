@@ -14,14 +14,14 @@ class ProgressLayerGroup extends LayerGroup {
     });
     tileLoadingProgress.addTo(map);
 
-    new L.Control.GPlaceAutocomplete({
-      callback: function(place) {
-        const loc = place.geometry.location;
-        console.log(place);
+    // new L.Control.GPlaceAutocomplete({
+    //   callback: function(place) {
+    //     const loc = place.geometry.location;
+    //     console.log(place);
 
-        map.setView([loc.lat(), loc.lng()], 8);
-      }
-    }).addTo(map);
+    //     map.setView([loc.lat(), loc.lng()], 8);
+    //   }
+    // }).addTo(map);
   }
 }
 

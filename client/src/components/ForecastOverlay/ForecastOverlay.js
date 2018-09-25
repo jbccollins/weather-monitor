@@ -3,18 +3,10 @@ import './ForecastOverlay.scss';
 import PropTypes from 'prop-types';
 
 class ForecastOverlay extends React.Component {
-  componentDidUpdate(prevProps) {
-    if (prevProps.radarCachebust !== this.props.radarCachebust) {
-      if (window.__weatherwidget_init) {
-        // This function is injected in app.js
-        window.__weatherwidget_init();
-      }
-    }
-  }
-
   render() {
     return (
       <div className="ForecastOverlay">
+        <div className="loading-text">Loading Forecast...</div>
         <a
           className="weatherwidget-io"
           href="https://forecast7.com/en/38d91n77d04/washington/?unit=us"
