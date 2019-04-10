@@ -9,6 +9,8 @@ const SET_RADAR_TIMESTAMP = 'radar/SET_RADAR_TIMESTAMP';
 const SET_RADAR_CACHEBUST = 'radar/SET_RADAR_CACHEBUST';
 
 const setRadarCachebust = () => {
+  // Defined in https://weatherwidget.io/js/widget.min.js
+  window.__weatherwidget_init();
   return dispatch => {
     dispatch({
       type: SET_RADAR_CACHEBUST,
