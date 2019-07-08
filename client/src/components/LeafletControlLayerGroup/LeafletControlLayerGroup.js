@@ -35,7 +35,9 @@ class LeafletControlLayerGroup extends LayerGroup {
           method: 'GET',
           headers: {
             Accept: 'application/json',
-            Origin: 'https://weatherwidget.io'
+            Origin: 'https://weatherwidget.io',
+            Referer: 'https://weatherwidget.io/w/',
+            DNT: 1
           }
         })
           .then(res => res.text())
@@ -44,6 +46,7 @@ class LeafletControlLayerGroup extends LayerGroup {
             if (text.indexOf('404') > -1) {
               error = true;
             }
+            //fetch(`https://forecast7.com/en/${text}/?format=json`,)
             const widgetURL = `https://forecast7.com/en/${text}/?unit=us`;
             setForecast7Data({
               name: place.name,
