@@ -1,7 +1,8 @@
 import {
   WEATHER_FORECAST_REQUESTED,
   WEATHER_FORECAST_RECEIVED,
-  WEATHER_FORECAST_ERRORED
+  WEATHER_FORECAST_ERRORED,
+  SET_FORECAST7_DATA
 } from '../actions/forecast';
 import { groupForecastByDay } from 'utilities/helpers';
 
@@ -9,6 +10,21 @@ const initialWeatherForecast = {
   weatherForecast: null,
   fetching: false,
   error: false
+};
+
+const initialForecast7Data = {
+  url: 'https://forecast7.com/en/38d91n77d04/washington/?unit=us',
+  name: 'Washington DC',
+  error: false
+};
+
+const forecast7Data = (state = initialForecast7Data, action) => {
+  switch (action.type) {
+    case SET_FORECAST7_DATA:
+      return action.payload.data;
+    default:
+      return state;
+  }
 };
 
 const weatherForecast = (state = initialWeatherForecast, action) => {
@@ -40,4 +56,4 @@ const weatherForecast = (state = initialWeatherForecast, action) => {
   }
 };
 
-export { weatherForecast };
+export { weatherForecast, forecast7Data };

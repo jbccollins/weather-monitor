@@ -3,11 +3,27 @@
     width: 100vw;
 
     .leaflet-gac-container {
-        background: white;
-        width: 200px;
+        border: none !important;
+        &:after {
+            content: 'Search BETA';
+            display: block;
+            margin-top: 5px;
+            position: relative;
+            background: goldenrod;
+            color: black;
+            padding: 0px 4px;
+            border-radius: 4px;
+            right: 0px;
+            top: 0px;
+            font-size: 10px;
+        }
+        .leaflet-gac-search-btn {
+            float: right;
+        }
         .leaflet-gac-control {
             border: none;
-            width: 100%;
+            //width: 100%;
+            background: white;
         }
     }
 
