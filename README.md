@@ -4,7 +4,7 @@ A no frills weather forecast website. Features a live looping precipitation rada
 
 Check it out here: https://us-weather-monitor.herokuapp.com
 
-![image of weather monitor](https://i.imgur.com/xkIKf7V.png)
+![image of weather monitor](https://i.imgur.com/tWfgSE3.png)
 
 ## Installation
 
