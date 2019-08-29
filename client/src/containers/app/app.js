@@ -2,15 +2,13 @@ import React from 'react';
 import WeatherMap from 'containers/WeatherMap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { setDisplayMode } from 'actions/controls';
 import { setRadarCachebust } from 'actions/radar';
-import { DARK, LIGHT } from 'common/constants/theme';
 import './app.scss';
 
 class App extends React.Component {
-  handleDisplayModeChange = () => {
-    const { displayMode } = this.props;
-    this.props.setDisplayMode(displayMode === LIGHT ? DARK : LIGHT);
+  state = {
+    showcaseModeTimeout: null,
+    showcasing: true
   };
 
   async componentDidMount() {
@@ -28,10 +26,28 @@ class App extends React.Component {
     })(document, 'script', 'weatherwidget-io-js');
   }
 
+  handleMouseMove = () => {
+    const { showcasing, showcaseModeTimeout } = this.state;
+    clearTimeout(showcaseModeTimeout);
+    const nextState = {
+      showcaseModeTimeout: setTimeout(this.beginShowcasing, 2000)
+    };
+    if (showcasing) {
+      nextState['showcasing'] = false;
+    }
+    this.setState(nextState);
+  };
+
+  beginShowcasing = () => {
+    this.setState({ showcasing: true });
+  };
+
   render() {
-    const { displayMode } = this.props;
+    const { showcasing } = this.state;
     return (
-      <div className={displayMode}>
+      <div
+        onMouseMove={this.handleMouseMove}
+        className={`${showcasing ? 'showcasing' : ''}`}>
         <main>
           <WeatherMap />
         </main>
@@ -40,14 +56,11 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  displayMode: state.displayMode
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      setDisplayMode,
       setRadarCachebust
     },
     dispatch

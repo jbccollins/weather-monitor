@@ -21,44 +21,44 @@ class LeafletControlLayerGroup extends LayerGroup {
     });
     tileLoadingProgress.addTo(map);
 
-    new L.Control.GPlaceAutocomplete({
-      collapsed_mode: true,
-      callback: function(place) {
-        if (!place || !place.geometry || !place.geometry.location) {
-          return;
-        }
-        const loc = place.geometry.location;
+    // new L.Control.GPlaceAutocomplete({
+    //   collapsed_mode: true,
+    //   callback: function(place) {
+    //     if (!place || !place.geometry || !place.geometry.location) {
+    //       return;
+    //     }
+    //     const loc = place.geometry.location;
 
-        map.setView([loc.lat(), loc.lng()], 8);
+    //     map.setView([loc.lat(), loc.lng()], 8);
 
-        fetch(`https://forecast7.com/api/getUrl/${place.place_id}`, {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            Origin: 'https://weatherwidget.io',
-            Referer: 'https://weatherwidget.io/w/',
-            DNT: 1
-          }
-        })
-          .then(res => res.text())
-          .then(text => {
-            let error = false;
-            if (text.indexOf('404') > -1) {
-              error = true;
-            }
-            //fetch(`https://forecast7.com/en/${text}/?format=json`,)
-            const widgetURL = `https://forecast7.com/en/${text}/?unit=us`;
-            setForecast7Data({
-              name: place.name,
-              url: error ? '#' : widgetURL,
-              error
-            });
-          });
-      }
-    }).addTo(map);
-    document
-      .getElementsByClassName('leaflet-gac-control')[0]
-      .setAttribute('placeholder', 'Search for a city (BETA)');
+    //     fetch(`https://forecast7.com/api/getUrl/${place.place_id}`, {
+    //       method: 'GET',
+    //       headers: {
+    //         Accept: 'application/json',
+    //         Origin: 'https://weatherwidget.io',
+    //         Referer: 'https://weatherwidget.io/w/',
+    //         DNT: 1
+    //       }
+    //     })
+    //       .then(res => res.text())
+    //       .then(text => {
+    //         let error = false;
+    //         if (text.indexOf('404') > -1) {
+    //           error = true;
+    //         }
+    //         //fetch(`https://forecast7.com/en/${text}/?format=json`,)
+    //         const widgetURL = `https://forecast7.com/en/${text}/?unit=us`;
+    //         setForecast7Data({
+    //           name: place.name,
+    //           url: error ? '#' : widgetURL,
+    //           error
+    //         });
+    //       });
+    //   }
+    // }).addTo(map);
+    // document
+    //   .getElementsByClassName('leaflet-gac-control')[0]
+    //   .setAttribute('placeholder', 'Search for a city (BETA)');
   }
 }
 
