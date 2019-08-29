@@ -33,7 +33,7 @@ class WeatherMap extends React.Component {
           <div className="map-and-radar-container">
             <Map
               center={[38.9072, -77.0369]}
-              zoom={8}
+              zoom={6}
               attribution={false}
               onClick={this.handleMapClick}>
               <TileLayer
