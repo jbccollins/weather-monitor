@@ -2,7 +2,7 @@
   "name": "us-weather-monitor",
   "version": "1.0.0",
   "engines": {
-    "node": ">=8.0.0"
+    "node": "12.16.1"
   },
   "scripts": {
     "client": "cd client && yarn start",

@@ -1,6 +1,5 @@
 import { LayerGroup } from 'react-leaflet';
 import L from 'leaflet';
-import fetch from 'isomorphic-fetch';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { setForecast7Data } from 'actions/forecast';
@@ -13,7 +12,6 @@ import './LeafletControlLayerGroup.scss';
 class LeafletControlLayerGroup extends LayerGroup {
   componentDidMount() {
     super.componentDidMount();
-    const { setForecast7Data } = this.props;
     const map = this.leafletElement._map;
     const tileLoadingProgress = new L.Control.TileLoadingProgress({
       leafletElt: this.leafletElement,
