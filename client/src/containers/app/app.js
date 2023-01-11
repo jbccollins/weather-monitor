@@ -26,11 +26,11 @@ class App extends React.Component {
     })(document, 'script', 'weatherwidget-io-js');
   }
 
-  handleMouseMove = () => {
+  handleActivity = () => {
     const { showcasing, showcaseModeTimeout } = this.state;
     clearTimeout(showcaseModeTimeout);
     const nextState = {
-      showcaseModeTimeout: setTimeout(this.beginShowcasing, 2000)
+      showcaseModeTimeout: setTimeout(this.beginShowcasing, 10000)
     };
     if (showcasing) {
       nextState['showcasing'] = false;
@@ -46,7 +46,8 @@ class App extends React.Component {
     const { showcasing } = this.state;
     return (
       <div
-        onMouseMove={this.handleMouseMove}
+        onKeyDown={this.handleActivity}
+        onMouseMove={this.handleActivity}
         className={`${showcasing ? 'showcasing' : ''}`}>
         <main>
           <WeatherMap />

@@ -4,13 +4,13 @@ div.global-tooltip.show {
     opacity: 1;
 }
 
-.leaflet-control-zoom {
+.leaflet-control-zoom, .leaflet-gac-container {
     transition: opacity 0.5s ease-in-out;
 }
 
 .showcasing {
-    .leaflet-control-zoom {
-        opacity: 0;
+    .leaflet-control-zoom, .leaflet-gac-container {
+        opacity: 0.5;
         pointer-events: none;
     }
 }
